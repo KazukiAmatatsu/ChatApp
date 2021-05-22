@@ -1,19 +1,27 @@
-import React from "react";
-import firebase from "../firebase";
+import React from 'react';
+import firebase from '../firebase';
 
-const Login = () => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+const Login = ({ history }) => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  // const user = React.useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        history.push('/'); // "/"に遷移
+      })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  // if (user) {
+  // return <Redirect to="/" />;
+  // }
   return (
     <>
       <h1>Login</h1>
