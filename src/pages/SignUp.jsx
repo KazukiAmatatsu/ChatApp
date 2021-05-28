@@ -1,18 +1,23 @@
-import React from "react";
-import firebase from "../firebase";
+import React from 'react';
+import firebase from '../firebase';
 
-const SignUp = () => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+const SignUp = ({ history }) => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        history.push('/login'); // "/login"に遷移
+      })
       .catch((err) => {
         console.log(err);
       });
   };
+
   return (
     <div>
       <h1>Sign Up</h1>
