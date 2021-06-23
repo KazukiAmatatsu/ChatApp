@@ -10,6 +10,8 @@ const PostForm = () => {
       content: value,
       user: name,
     });
+    setName('');
+    setValue('');
   };
   return (
     <form onSubmit={onSubmit}>
